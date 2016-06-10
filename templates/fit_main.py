@@ -44,7 +44,7 @@ def setup(par):
     imagers = []
     for i in xrange(prob.nwle):
         imagers.append(pyvfit.Imager(obs.uvtables[i].u, obs.uvtables[i].v, obs.uvtables[i].wle, obs.star.dist.cm,
-                            obs.disk_ffcontr[i]))
+                            obs.disk_ffcontr[i], maxuv_factor = 20.))
 
     return obs, model, prob, fitter, imagers
 
@@ -86,7 +86,8 @@ if __name__=='__main__':
     obs, model, prob, fitter, imagers = setup(par)
 
     if options.is_test == False:
-        pyvfit.run_emcee(obs, model, prob, fitter, imagers, pyvfit.lnprob, pool, par)
+        #pyvfit.run_emcee(obs, model, prob, fitter, imagers, pyvfit.lnprob, pool, par)
+        pyvfit.run_emcee(obs, model, prob, fitter, imagers, pyvfit.lnprob_cuda, pool, par)
     else:
         print("Executing TEST")
         pyvfit.run_emcee(obs, model, prob, fitter, imagers, pyvfit.lnprob, None, par, is_test=True, test_p=[1., 1., 100., 10., 50., 0.01, 0.01])

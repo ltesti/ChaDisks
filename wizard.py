@@ -37,7 +37,7 @@ wle = 0.890  # mm  Observing wavelength (to be used for both wle_out_mm and wle_
 # radial grid
 nrad = 500
 rmin = 0.1  # AU
-rmax = 300.  # AU
+rmax = 500.  # AU
 
 # dust
 nsize = 200
