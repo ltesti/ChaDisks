@@ -21,11 +21,11 @@ for i in range(len(datafiles)):
     #
     # split out removing w=0 data
     split(vis=datafiles_orig[i],outputvis=datafiles[i],datacolumn='data',keepflags=False)
-	print("--> Importing ms table: {0}".format(datafiles[i]))
-	myuvdata = UVDataMS("dummy", (datafiles[i], tb))
-	rat_re,rat_im = myuvdata.get_weight()
-	myuvdata.we = myuvdata.we*(rat_re+rat_im)/2.
-	print("<-- Exporting uv table: {0}".format(outfiles[i]))
-	myuvdata.write_uv_to_ascii(outfiles[i])   
+    print("--> Importing ms table: {0}".format(datafiles[i]))
+    myuvdata = UVDataMS("dummy", (datafiles[i], tb))
+    rat_re,rat_im = myuvdata.get_weight()
+    myuvdata.we = myuvdata.we*(rat_re+rat_im)/2.
+    print("<-- Exporting uv table: {0}".format(outfiles[i]))
+    myuvdata.write_uv_to_ascii(outfiles[i])   
 
 
