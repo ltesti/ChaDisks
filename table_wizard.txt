@@ -1,0 +1,2 @@
+ID|Name|Dist|SpT|Teff|Lstar|Mstar|iflar
+CRCha|J10590699-7701404|160|K0|5110|3.26|0.3
