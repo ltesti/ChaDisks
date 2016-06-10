@@ -1,28 +1,26 @@
 import sys
 sys.path.append('/home/mtazzari/repos/')
 from ltutils.uvdata import UVDataMS
+from astropy.io import ascii as aio
 
 # Datafiles and sources
-datafiles = ['G/science_calibrated.ms',
-            'M/science_calibrated.ms']
-sources = [['9', '14', '28'],
-          ['10']]
-newnames_root = ['G', 'M']
+datadir = '../data_fits/'
 
-# defines a list with all new names
-newnames = []
-for dat in range(len(datafiles)):
-       newnames.append([])
-       for ns in range(len(sources[dat])):
-           newnames[dat].append(newnames_root[dat]+sources[dat][ns])
+tab = aio.read('table_wizard.txt')
 
-for dat in range(len(datafiles)):
-	for i, filename in enumerate(newnames[dat]):
-		print("--> Importing ms table: {0}".format(filename+".ms"))
-		myuvdata = UVDataMS("dummy", (filename+".ms", tb))
-		rat_re,rat_im = myuvdata.get_weight()
-		myuvdata.we = myuvdata.we*(rat_re+rat_im)/2.
-		print("<-- Exporting uv table: {0}".format("alma_b7_"+filename+".txt"))
-		myuvdata.write_uv_to_ascii("alma_b7_"+filename+".txt”)
+datafiles = []
+outfiles =[]
+for src in tab:
+    datafiles.append(datadir+src['Name']+'_selfcal.ms')
+    outfiles.append('../uvdata/alma_b7_'+src['ID']+'.txt')
+
+
+for i in range(len(datafiles)):
+	print("--> Importing ms table: {0}".format(datafiles[i]))
+	myuvdata = UVDataMS("dummy", (datafiles[i], tb))
+	rat_re,rat_im = myuvdata.get_weight()
+	myuvdata.we = myuvdata.we*(rat_re+rat_im)/2.
+	print("<-- Exporting uv table: {0}".format(outfiles[i]))
+	myuvdata.write_uv_to_ascii(outfiles[i])   
 
 
