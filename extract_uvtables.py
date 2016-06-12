@@ -4,7 +4,7 @@ from ltutils.uvdata import UVDataMS
 from astropy.io import ascii as aio
 
 # if `True run in simulation
-debug = True
+debug = False
 
 # Datafiles and sources
 datadir = '../data_fits/'
