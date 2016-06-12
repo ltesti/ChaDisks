@@ -149,7 +149,7 @@ for source in table_parameters:
     par_model.update(iflar=iflar)
 
     # OBSERVATION PARAMETERS - UPDATE
-    obs_filename = "alma_b7_" + starname + ".txt"
+    obs_filename = "alma_b7_" + starname + "_now0_phc.txt"
     par_obs.update(data_filenames=[obs_filename])
 
     # create total parameters
