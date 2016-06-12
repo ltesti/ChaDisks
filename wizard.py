@@ -75,7 +75,7 @@ weight_corr = [1.]
 par_obs = {'wle_mm': wle_mm, 'disk_ffcontr': disk_ffcontr, 'weight_corr': weight_corr}
 
 # FITS PARAMETERS
-nwalkers = 100
+nwalkers = 80
 nburnin = 200
 nstep_dump = 100
 initial_step = 0
