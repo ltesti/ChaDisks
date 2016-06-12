@@ -29,17 +29,17 @@ for i in range(len(datafiles)):
     # split out removing w=0 data
     print("--> Splitting ms table: {0} into {1} with keepflags=False".format(datafiles_orig[i],datafiles_now0[i]))
     if debug:
-        print('    split(vis={0},outputvis={1},datacolumn='data',keepflags=False)'.format(datafiles_orig[i],datafiles_now0[i]))
+        print('    split(vis=\'{0}\',outputvis=\'{1}\',datacolumn=\'data\',keepflags=False)'.format(datafiles_orig[i],datafiles_now0[i]))
     else:
         split(vis=datafiles_orig[i],outputvis=datafiles_now0[i],datacolumn='data',keepflags=False)
     print("--> Adjusting phase center of: {0} into {1}".format(datafiles_now0[i],datafiles[i]))
     if debug:
-        print('    fixvis(vis={0},outputvis={1},phasecenter={2})'.format(datafiles_now0[i],datafiles[i],phasec_string[i]))
+        print('    fixvis(vis=\'{0}\',outputvis=\'{1}\',phasecenter=\'{2}\')'.format(datafiles_now0[i],datafiles[i],phasec_string[i]))
     else:
         fixvis(vis=datafiles_now0[i],outputvis=datafiles[i],phasecenter=phasec_string[i])
     print("--> Importing ms table: {0}".format(datafiles[i]))
     if debug:
-        print('    myuvdata = UVDataMS("dummy", ({0}, tb))'.format(datafiles[i]))
+        print('    myuvdata = UVDataMS("dummy", (\'{0}\', tb))'.format(datafiles[i]))
         print('    rat_re,rat_im = myuvdata.get_weight()')
         print('    myuvdata.we = myuvdata.we*(rat_re+rat_im)/2.')
     else:
@@ -48,7 +48,7 @@ for i in range(len(datafiles)):
         myuvdata.we = myuvdata.we*(rat_re+rat_im)/2.
     print("<-- Exporting uv table: {0}".format(outfiles[i]))
     if debug:
-        print('     myuvdata.write_uv_to_ascii({0})'.format(outfiles[i]))
+        print('     myuvdata.write_uv_to_ascii(\'{0}\')'.format(outfiles[i]))
     else:
         myuvdata.write_uv_to_ascii(outfiles[i])   
 
